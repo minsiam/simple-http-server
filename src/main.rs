@@ -809,10 +809,10 @@ impl MainHandler {
         let upload_form = if self.upload.is_some() {
             format!(
                 r#"
-<form style="margin-top:1em; margin-bottom:1em;" action="/{path}" method="POST" enctype="multipart/form-data">
-  <input type="file" name="files" accept="*" multiple />
+<form action="/{path}" method="POST" enctype="multipart/form-datt" class="fixed-form">
+  <input type="file" name="files" accept="*" multiple class="choose-files" />
   <input type="hidden" name="csrf" value="{csrf}"/>
-  <input type="submit" value="Upload" />
+  <input type="submit" value="Upload" class="submit" />
 </form>
 "#,
                 path = encode_link_path(path_prefix),
@@ -989,8 +989,88 @@ tr a::before {
 #lastModified {
     margin-right: 90px;
     margin-left: 30px;
+    padding: 7px;
 }
 
+.submit {
+    color: white;
+    height: 40px;
+    width: 90px;
+    font-size: 15px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgba(93, 21, 99, 0.5);
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.submit:active {
+    background-color: rgba(93, 21, 99, 0.9);
+}
+
+.choose-files::-webkit-file-upload-button {
+    background-color: rgba(93, 21, 99, 0.5);
+    color: white;
+    height: 40px;
+    width: 125px;
+    border-radius: 15px;
+    border: none;
+    margin-right: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.choose-files::-webkit-file-upload-button:active {
+    background-color: rgba(93, 21, 99, 0.9);
+}
+
+.choose-files {
+    color: transparent;
+    margin-right: 0px;
+}
+
+.fixed-form {
+    margin-top:1em;
+    margin-bottom:1em; 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #A96CB3;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+@media screen (min-width: 1500px) {
+    .choose-files::-webkit-file-upload-button {
+        margin-right: 0px;
+    }
+    .submit {
+        color: white;
+        height: 30px;
+        width: 70px;
+        font-size: 1px;
+        border: none;
+        border-radius: 15px;
+        background-color: rgba(93, 21, 99, 0.5);
+        cursor: pointer
+    }
+    
+    .fixed-form {
+        margin-top:1em;
+        margin-bottom:1em; 
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    } 
+
+}
 
 @media (min-width: 768px) {
     tr {
@@ -1005,6 +1085,13 @@ tr a::before {
     }
 }
 
+::webkit-scrollbar {
+    background-color: #A96CB3;
+}
+
+::webkit-scrollbar-thumb {
+    background-color: white;
+}
 @media (min-width: 992px) {
     body {
         padding: 45px;
